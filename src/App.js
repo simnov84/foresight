@@ -7,7 +7,6 @@ import Grade from "./Grade";
 function App() {
   const [stuName, setName] = useState("");
   const [stuGrade, setGrade] = useState("");
-  // const [newGrade, setnewGrade] = useState("");
   const [stuList, setList] = useState([]);
   /*useEffect(() => {
     axios.get("http://localhost:9000/getDetails").then((response) => {
@@ -19,6 +18,7 @@ function App() {
       try {
         let api = await axios.get(`${env.api}/getDetails`);
         setList([...api.data]);
+        console.log(api.data);
       } catch (error) {
         console.log(error);
       }
@@ -40,14 +40,6 @@ function App() {
       console.log(error);
     }
   };
-
-  /*const updateStu = async (stud) => {
-    await axios.put(`${env.api}/updateDetails`, {
-      name: stud,
-      grade: setnewGrade,
-    });
-    setnewGrade("");
-  };*/
 
   const deleteStu = async (stud) => {
     try {
@@ -103,19 +95,13 @@ function App() {
                 return (
                   <tr key={key}>
                     <td>{val.name}</td>
-                    <td>
-                      <Grade key={key} grade={val.grade} />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => {
-                          // setnewGrade(val.grade);
-                          // updateStu(val.name);
-                        }}
-                      >
-                        Edit
-                      </button>
-                    </td>
+                    <Grade
+                      key={key}
+                      name={val.name}
+                      grade={val.grade}
+                      stuList={stuList}
+                      setList={setList}
+                    />
                     <td>
                       <button
                         onClick={() => {
