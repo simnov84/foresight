@@ -3,6 +3,7 @@ import "./App.css";
 import axios from "axios";
 import env from "./Settings";
 import Grade from "./Grade";
+import Name from "./Name";
 
 function App() {
   const [stuName, setName] = useState("");
@@ -93,6 +94,16 @@ function App() {
                 return (
                   <tr key={key}>
                     <td>{val.name}</td>
+                    <td>{val.grade}</td>
+
+                    <Name
+                      key={key}
+                      name={val.name}
+                      grade={val.grade}
+                      stuList={stuList}
+                      setList={setList}
+                    />
+
                     <Grade
                       key={key}
                       name={val.name}
@@ -100,6 +111,7 @@ function App() {
                       stuList={stuList}
                       setList={setList}
                     />
+
                     <td>
                       <button
                         onClick={() => {
