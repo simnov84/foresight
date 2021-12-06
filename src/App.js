@@ -8,11 +8,7 @@ function App() {
   const [stuName, setName] = useState("");
   const [stuGrade, setGrade] = useState("");
   const [stuList, setList] = useState([]);
-  /*useEffect(() => {
-    axios.get("http://localhost:9000/getDetails").then((response) => {
-      setList(response.data)
-    });
-  }, []);*/
+
   useEffect(() => {
     async function fetch() {
       try {
@@ -63,6 +59,7 @@ function App() {
             type="text"
             name="name"
             value={stuName}
+            required
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -75,6 +72,7 @@ function App() {
             max="12"
             name="grade"
             value={stuGrade}
+            required
             onChange={(e) => {
               setGrade(e.target.value);
             }}
@@ -111,16 +109,6 @@ function App() {
                         Delete
                       </button>
                     </td>
-                    {/* <td>
-                      <input
-                        type="number"
-                        id="updateInput"
-                        value={newGrade}
-                        onChange={(e) => {
-                          setnewGrade(e.target.value);
-                        }}
-                      />
-                    </td> */}
                   </tr>
                 );
               })}

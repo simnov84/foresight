@@ -7,23 +7,30 @@ function Grade(props) {
   const [newGrade, setnewGrade] = useState("");
 
   const updateStu = async (stud) => {
-    /*await axios.put(`${env.api}/updateDetails`, {
+    await axios.put(`${env.api}/updateDetails`, {
       name: stud,
       grade: newGrade,
-    });*/
-    let datas = props.stuList.filter((e) => e.name === stud);
-    datas[0].grade = newGrade;
-    console.log(datas);
+    });
+    let datas = props.stuList.findIndex((e) => e.name === stud);
+    let newList = props.stuList;
+    newList[datas].grade = newGrade;
+    props.setList([...newList]);
     setnewGrade("");
+    setChange(!change);
   };
+
   return (
     <>
       <td>
-        {newGrade ? (
+        {change ? (
           <input
             type="number"
             id="updateInput"
             value={newGrade}
+            step="1"
+            // min=""
+            max="12"
+            maxLength="2"
             onChange={(e) => {
               setnewGrade(e.target.value);
             }}
@@ -36,7 +43,6 @@ function Grade(props) {
         {change ? (
           <button
             onClick={() => {
-              setChange(!change);
               updateStu(props.name);
             }}
           >
@@ -56,5 +62,4 @@ function Grade(props) {
     </>
   );
 }
-
 export default Grade;
